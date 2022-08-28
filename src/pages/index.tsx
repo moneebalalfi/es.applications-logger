@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import useSWR from "swr";
 import Table from "../components/Table";
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Home = () => {
-  const { data, error } = useSWR(
+  const { data } = useSWR(
     "https://run.mocky.io/v3/a2fbc23e-069e-4ba5-954c-cd910986f40f",
     fetcher
   );
