@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useMemo } from "react";
 import useSWR from "swr";
 import Table from "../components/Table";
@@ -40,18 +41,24 @@ const Home = () => {
   );
 
   return (
-    <div className="flex-col p-8 md:p-16">
-      <h1 className="text-4xl font-extrabold mb-12 text-blue tracking-wide  text-center items-center">
-        Estarta Solutions Task
-      </h1>
-      <div>
-        {!data ? (
-          <>Loading ....</>
-        ) : (
-          <Table columns={columns} data={data.result.auditLog} />
-        )}
+    <>
+      <Head>
+        <title>ES - Application Logger</title>
+      </Head>
+
+      <div className="flex-col p-8 md:p-16">
+        <h1 className="text-4xl font-extrabold mb-12 text-blue tracking-wide  text-center items-center">
+          Estarta Solutions Task
+        </h1>
+        <div>
+          {!data ? (
+            <>Loading ....</>
+          ) : (
+            <Table columns={columns} data={data.result.auditLog} />
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
