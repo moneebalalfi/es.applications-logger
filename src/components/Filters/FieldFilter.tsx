@@ -1,8 +1,6 @@
+import { FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { Row } from "react-table";
-import DatePicker from "react-datepicker";
-import { useState } from "react";
-import "react-datepicker/dist/react-datepicker.css";
-import { Flex, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import DateRangeFilter from "./DateRangeFilter";
 import SelectFilter from "./SelectFilter";
 
 interface FieldFilterProps {
@@ -23,9 +21,6 @@ function FieldFilter({
   handleChange,
 }: FieldFilterProps) {
   function FilterInput() {
-    const [startDate, setStartDate] = useState<Date>();
-    const [endDate, setEndDate] = useState<Date>();
-
     switch (filterType) {
       case "SELECT": {
         if (preFilteredRows) {
@@ -40,28 +35,15 @@ function FieldFilter({
       }
 
       case "DATE":
-        return (
-          <Flex>
-            <DatePicker
-              placeholderText="From .."
-              selected={startDate}
-              onChange={(date: Date) => setStartDate(date)}
-              selectsStart
-              startDate={startDate}
-              endDate={endDate}
+        if (preFilteredRows) {
+          return (
+            <DateRangeFilter
+              id={id}
+              preFilteredRows={preFilteredRows}
+              handleChange={handleChange}
             />
-
-            <DatePicker
-              placeholderText="To .."
-              selected={endDate}
-              onChange={(date: Date) => setEndDate(date)}
-              selectsEnd
-              startDate={startDate}
-              endDate={endDate}
-              minDate={startDate}
-            />
-          </Flex>
-        );
+          );
+        }
 
       default:
         return (
@@ -80,7 +62,7 @@ function FieldFilter({
   }
 
   return (
-    <FormControl>
+    <FormControl pos={"relative"}>
       <FormLabel fontSize={"sm"} color={"purple.900"} fontWeight="bold">
         {title}
       </FormLabel>

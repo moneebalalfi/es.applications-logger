@@ -41,7 +41,7 @@ function Filters({ fields, setFilter }: FiltersProps) {
           h={22}
         />
       </Flex>
-      <Collapse in={isOpen} animateOpacity>
+      <Collapse in={isOpen} animateOpacity style={{ overflow: "visible" }}>
         <Stack
           direction={{ base: "column", lg: "row" }}
           pt={4}
@@ -76,6 +76,7 @@ function Filters({ fields, setFilter }: FiltersProps) {
             title="Date"
             id="creationTimestamp"
             filterType="DATE"
+            preFilteredRows={fields[5].preFilteredRows}
             handleChange={setFilter}
           />
         </Stack>

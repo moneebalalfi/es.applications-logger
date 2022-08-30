@@ -52,7 +52,7 @@ function EsTable({ columns, data, caption }: TableProps) {
       <Filters fields={fields} setFilter={setFilter} />
 
       {/* The Actual table */}
-      <Box maxWidth="100%" overflowX="scroll">
+      <Box overflowX="scroll">
         <Table
           variant="simple"
           {...getTableProps()}
@@ -132,9 +132,10 @@ function EsTable({ columns, data, caption }: TableProps) {
                         {...cell.getCellProps()}
                         border={"none"}
                         p={{ base: 1, md: 4 }}
+                        {...(!cell.value && { color: "gray.500" })}
                         textTransform="lowercase"
                       >
-                        {cell.render("Cell")}
+                        {cell.value ? cell.render("Cell") : "--/--"}
                       </Td>
                     );
                   })}
