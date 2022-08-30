@@ -6,13 +6,10 @@ import Header from "../components/layouts/Header";
 import PageContent from "../components/layouts/PageContent";
 import Loading from "../components/Loading";
 import EsTable from "../components/Table";
-import { fetcher } from "../utils";
+import { DATA_API_ENDPOINT, fetcher } from "../utils";
 
 const Home = () => {
-  const { data } = useSWR(
-    "https://run.mocky.io/v3/a2fbc23e-069e-4ba5-954c-cd910986f40f",
-    fetcher
-  );
+  const { data } = useSWR(DATA_API_ENDPOINT, fetcher);
 
   if (data) console.log(data);
 
