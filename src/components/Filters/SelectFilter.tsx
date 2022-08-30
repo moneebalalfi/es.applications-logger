@@ -1,5 +1,5 @@
+import { Select } from "@chakra-ui/react";
 import { useMemo } from "react";
-import { TbSelect } from "react-icons/tb";
 import { Row } from "react-table";
 
 interface SelectFilterProps {
@@ -29,24 +29,19 @@ const SelectFilter = ({
   }, [id, preFilteredRows]);
 
   return (
-    <div className="relative">
-      <select
-        id={id}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md w-full lg:w-[200px] p-2 appearance-none cursor-pointer"
-        onChange={(e) => handleChange(id, e.target.value)}
-      >
-        <option value="">All</option>{" "}
-        {options.map((option, i) => (
-          <option key={i} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
-      <TbSelect
-        className="absolute pointer-events-none inset-y-0 right-0 flex items-center px-2"
-        size={40}
-      />
-    </div>
+    <Select
+      onChange={(e) => handleChange(id, e.target.value)}
+      variant="filled"
+      fontSize={"sm"}
+      bg={"purple.100"}
+    >
+      <option value="">All</option>{" "}
+      {options.map((option, i) => (
+        <option key={i} value={option}>
+          {option}
+        </option>
+      ))}
+    </Select>
   );
 };
 

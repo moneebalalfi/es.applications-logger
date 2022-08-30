@@ -1,8 +1,9 @@
 import { Row } from "react-table";
-import SelectFilter from "./SelectFilter";
 import DatePicker from "react-datepicker";
 import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
+import { Flex, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import SelectFilter from "./SelectFilter";
 
 interface FieldFilterProps {
   title: string;
@@ -40,7 +41,7 @@ function FieldFilter({
 
       case "DATE":
         return (
-          <div className="flex flex-col lg:flex-row">
+          <Flex>
             <DatePicker
               placeholderText="From .."
               className="mb-2 lg:mb-0 lg:mr-2 w-full lg:w-auto"
@@ -61,14 +62,15 @@ function FieldFilter({
               endDate={endDate}
               minDate={startDate}
             />
-          </div>
+          </Flex>
         );
 
       default:
         return (
-          <input
-            id={id}
-            className="bg-gray-50 border border-gray-300 text-sm rounded-md block w-full p-2 "
+          <Input
+            variant="filled"
+            fontSize={"sm"}
+            bg={"purple.100"}
             placeholder={placeholder}
             onChange={(e) => handleChange(id, e.target.value)}
           />
@@ -77,15 +79,12 @@ function FieldFilter({
   }
 
   return (
-    <div className="text-dark ">
-      <label
-        className="block font-bold cursor-pointer text-xs md:text-md mb-2"
-        htmlFor={id}
-      >
+    <FormControl>
+      <FormLabel fontSize={"sm"} color={"purple.900"} fontWeight="bold">
         {title}
-      </label>
+      </FormLabel>
       {FilterInput()}
-    </div>
+    </FormControl>
   );
 }
 
