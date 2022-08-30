@@ -18,43 +18,19 @@ const Home = () => {
       },
       {
         Header: "Application Type",
-        accessor: (val: any) => {
-          return val.applicationType ? (
-            val.applicationType
-          ) : (
-            <span className="text-gray-400">---/---</span>
-          );
-        },
+        accessor: "applicationType",
       },
       {
         Header: "Application ID",
-        accessor: (val: any) => {
-          return val.applicationId ? (
-            val.applicationId
-          ) : (
-            <span className="text-gray-400">---/---</span>
-          );
-        },
+        accessor: "applicationId",
       },
       {
         Header: "Action",
-        accessor: (val: any) => {
-          return val.actionType ? (
-            val.actionType
-          ) : (
-            <span className="text-gray-400">---/---</span>
-          );
-        },
+        accessor: "actionType",
       },
       {
         Header: "Action Details",
-        accessor: (val: any) => {
-          return val.logInfo ? (
-            val.logInfo
-          ) : (
-            <span className="text-gray-400">---/---</span>
-          );
-        },
+        accessor: "logInfo",
       },
       {
         Header: "Date: Time",

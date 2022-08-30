@@ -89,7 +89,7 @@ function Table({ columns, data }: TableProps) {
                             {...column.getHeaderProps(
                               column.getSortByToggleProps()
                             )}
-                            className="px-6 py-3 text-[10px] sm:text-xs font-bold text-gray-500 text-center"
+                            className="px-4 py-2  lg:px-6 lg:py-3 text-[10px] sm:text-xs font-bold text-gray-500 text-center lg:max-w-[200px]"
                           >
                             {column.render("Header")}
                             {column.isSorted && (
@@ -125,9 +125,11 @@ function Table({ columns, data }: TableProps) {
                             <td
                               role={"cell"}
                               {...cell.getCellProps()}
-                              className="p-4 text-xs whitespace-nowrap lowercase text-center"
+                              className={`p-4 text-xs whitespace-nowrap  lg:whitespace-normal lowercase text-center lg:max-w-[200px] ${
+                                !cell.value && "text-gray-400"
+                              }`}
                             >
-                              {cell.render("Cell")}
+                              {cell.value ? cell.render("Cell") : "--/--"}
                             </td>
                           );
                         })}
