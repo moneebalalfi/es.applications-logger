@@ -14,10 +14,6 @@ function DateRangeFilter({}: DateRangeFilterProps) {
     new Date(),
   ]);
 
-  useEffect(() => {
-    console.log("📢tsx:18]", selectedDates);
-  }, [selectedDates]);
-
   return (
     <RangeDatepicker
       selectedDates={selectedDates}

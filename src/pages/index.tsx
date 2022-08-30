@@ -11,8 +11,6 @@ import { DATA_API_ENDPOINT, fetcher } from "../utils";
 const Home = () => {
   const { data } = useSWR(DATA_API_ENDPOINT, fetcher);
 
-  if (data) console.log(data);
-
   const columns = useMemo(
     () => [
       {
