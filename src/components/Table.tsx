@@ -38,7 +38,7 @@ function Table({ columns, data }: TableProps) {
 
   return (
     <>
-      <div className="filter-bar flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 p-2">
+      <div className="filter-bar flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4 p-2">
         <FieldFilter
           title="Application ID"
           placeholder="e.g 3757..."
@@ -85,7 +85,7 @@ function Table({ columns, data }: TableProps) {
                           <th
                             role={"columnheader"}
                             {...column.getHeaderProps()}
-                            className="px-6 py-3 text-xs font-bold text-left text-gray-500 "
+                            className="px-6 py-3 text-[10px] sm:text-xs font-bold text-left text-gray-500 "
                           >
                             {column.render("Header")}
                           </th>
@@ -99,10 +99,14 @@ function Table({ columns, data }: TableProps) {
                   className="divide-y divide-gray-200"
                   {...getTableBodyProps}
                 >
-                  {page.map((row) => {
+                  {page.map((row, i) => {
                     prepareRow(row);
                     return (
-                      <tr role={"row"} {...row.getRowProps()}>
+                      <tr
+                        role={"row"}
+                        {...row.getRowProps()}
+                        className={`${i % 2 === 0 && "bg-blue-200"}`}
+                      >
                         {row.cells.map((cell) => {
                           return (
                             <td
@@ -120,6 +124,15 @@ function Table({ columns, data }: TableProps) {
                 </tbody>
               </table>
             </div>
+            {!page.length && (
+              <div
+                className="p-4 text-sm text-blue-700 bg-blue-200 rounded-md w-full  border-2 border-slate-100 mt-8"
+                role="alert"
+              >
+                <span className="font-bold">Nothing found!</span> ... Try a new
+                search 🔎
+              </div>
+            )}
           </div>
         </div>
       </div>

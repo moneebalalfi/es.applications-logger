@@ -40,15 +40,17 @@ function FieldFilter({
 
       case "DATE":
         return (
-          <div className="flex space-y-4 md:space-y-0 md:space-x-4 m-0">
+          <div className="flex flex-col lg:flex-row">
             <DatePicker
               placeholderText="From .."
+              className="mb-2 lg:mb-0 lg:mr-2 w-full lg:w-auto"
               selected={fromDate}
               onChange={(date: Date) => setFromDate(date)}
             />
 
             <DatePicker
               placeholderText="To .."
+              className="w-full lg:w-auto"
               selected={toDate}
               onChange={(date: Date) => setToDate(date)}
             />
@@ -69,7 +71,10 @@ function FieldFilter({
 
   return (
     <div className="text-dark ">
-      <label className="block font-bold cursor-pointer" htmlFor={id}>
+      <label
+        className="block font-bold cursor-pointer text-xs md:text-md mb-2"
+        htmlFor={id}
+      >
         {title}
       </label>
       {FilterInput()}

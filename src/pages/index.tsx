@@ -47,7 +47,7 @@ const Home = () => {
       </Head>
 
       <div className="flex-col p-8 md:p-16">
-        <h1 className="text-4xl font-extrabold mb-12 text-blue tracking-wide  text-center items-center">
+        <h1 className="text-4xl font-extrabold mb-12 text-blue-500 tracking-wide  text-center items-center ">
           Estarta Solutions Task
         </h1>
         <div>
