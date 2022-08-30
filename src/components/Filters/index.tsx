@@ -31,7 +31,7 @@ function Filters({ fields, setFilter }: FiltersProps) {
         py={2}
         mb={4}
       >
-        <Heading fontSize={"2xl"} color="purple.700">
+        <Heading fontSize={{ base: "md", md: "2xl" }} color="purple.700">
           Filter options{" "}
         </Heading>
         <Icon

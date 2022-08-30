@@ -137,7 +137,11 @@ function EsTable({ columns, data, caption }: TableProps) {
                 >
                   {row.cells.map((cell) => {
                     return (
-                      <Td {...cell.getCellProps()} border={"none"}>
+                      <Td
+                        {...cell.getCellProps()}
+                        border={"none"}
+                        textTransform="lowercase"
+                      >
                         {cell.render("Cell")}
                       </Td>
                     );
@@ -159,11 +163,10 @@ function EsTable({ columns, data, caption }: TableProps) {
             mt={4}
             colorScheme="purple"
             variant="subtle"
-            alignItems="center"
-            justifyContent="center"
+            fontSize={{ base: "sm", md: "md" }}
           >
             <AlertIcon />
-            <AlertTitle mr={2}>Nothing found</AlertTitle>
+            <AlertTitle mr={{ md: 2 }}>Nothing found</AlertTitle>
             <AlertDescription>
               on this table ... Try a new search!
             </AlertDescription>

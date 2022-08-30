@@ -37,7 +37,7 @@ const SelectFilter = ({
     >
       <option value="">All</option>{" "}
       {options.map((option, i) => (
-        <option key={i} value={option}>
+        <option key={i} value={option} style={{ fontSize: "13px" }}>
           {option}
         </option>
       ))}
