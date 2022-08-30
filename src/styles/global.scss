@@ -12,3 +12,13 @@ $blue: #0284c7;
     color: $dark;
   }
 }
+
+// Some modifications of the react date picker default styles
+.react-datepicker__input-container {
+  input {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+  }
+}

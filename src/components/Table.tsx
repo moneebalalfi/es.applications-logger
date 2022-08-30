@@ -61,6 +61,13 @@ function Table({ columns, data }: TableProps) {
           preFilteredRows={fields[3].preFilteredRows}
           handleChange={setFilter}
         />
+
+        <FieldFilter
+          title="Date"
+          id="creationTimestamp"
+          filterType="DATE"
+          handleChange={setFilter}
+        />
       </div>
       <div className="flex flex-col ">
         <div className="overflow-x-auto">

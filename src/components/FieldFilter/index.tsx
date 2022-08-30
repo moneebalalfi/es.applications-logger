@@ -1,5 +1,8 @@
 import { Row } from "react-table";
 import SelectFilter from "./SelectFilter";
+import DatePicker from "react-datepicker";
+import { useState } from "react";
+import "react-datepicker/dist/react-datepicker.css";
 
 interface FieldFilterProps {
   title: string;
@@ -19,6 +22,9 @@ function FieldFilter({
   handleChange,
 }: FieldFilterProps) {
   function FilterInput() {
+    const [fromDate, setFromDate] = useState<Date>();
+    const [toDate, setToDate] = useState<Date>();
+
     switch (filterType) {
       case "SELECT": {
         if (preFilteredRows) {
@@ -33,7 +39,21 @@ function FieldFilter({
       }
 
       case "DATE":
-        return <>date filter</>;
+        return (
+          <div className="flex space-y-4 md:space-y-0 md:space-x-4 m-0">
+            <DatePicker
+              placeholderText="From .."
+              selected={fromDate}
+              onChange={(date: Date) => setFromDate(date)}
+            />
+
+            <DatePicker
+              placeholderText="To .."
+              selected={toDate}
+              onChange={(date: Date) => setToDate(date)}
+            />
+          </div>
+        );
 
       default:
         return (
