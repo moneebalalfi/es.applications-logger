@@ -34,7 +34,6 @@ function EsTable({ columns, data, caption }: TableProps) {
     prepareRow,
     columns: fields,
     setFilter,
-    onRowClick,
   } = useTable(
     {
       columns,
@@ -76,7 +75,7 @@ function EsTable({ columns, data, caption }: TableProps) {
                       borderColor={"purple.200"}
                       fontWeight="800"
                       fontSize="xs"
-                      paddingY={6}
+                      paddingY={{ base: 2, md: 6 }}
                     >
                       <Box
                         display="flex"
@@ -117,14 +116,6 @@ function EsTable({ columns, data, caption }: TableProps) {
               return (
                 <Tr
                   {...row.getRowProps()}
-                  {...(onRowClick && {
-                    cursor: "pointer",
-                    onClick: (event) => {
-                      event.stopPropagation();
-                      event.preventDefault();
-                      onRowClick(row);
-                    },
-                  })}
                   _hover={{
                     bgColor: "purple.200",
                   }}
@@ -140,6 +131,7 @@ function EsTable({ columns, data, caption }: TableProps) {
                       <Td
                         {...cell.getCellProps()}
                         border={"none"}
+                        p={{ base: 1, md: 4 }}
                         textTransform="lowercase"
                       >
                         {cell.render("Cell")}

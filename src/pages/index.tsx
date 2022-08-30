@@ -71,7 +71,7 @@ const Home = () => {
           </Container>
         </Box>
 
-        <Flex alignItems={"center"} flexDir={"column"} p={8}>
+        <Flex alignItems={"center"} flexDir={"column"} p={{ base: 4, md: 8 }}>
           <Container maxWidth={"container.xl"}>
             {!data ? (
               <Flex h="80vh" alignItems={"center"} justifyContent="center">
