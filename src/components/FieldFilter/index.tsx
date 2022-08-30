@@ -22,8 +22,8 @@ function FieldFilter({
   handleChange,
 }: FieldFilterProps) {
   function FilterInput() {
-    const [fromDate, setFromDate] = useState<Date>();
-    const [toDate, setToDate] = useState<Date>();
+    const [startDate, setStartDate] = useState<Date>();
+    const [endDate, setEndDate] = useState<Date>();
 
     switch (filterType) {
       case "SELECT": {
@@ -44,15 +44,22 @@ function FieldFilter({
             <DatePicker
               placeholderText="From .."
               className="mb-2 lg:mb-0 lg:mr-2 w-full lg:w-auto"
-              selected={fromDate}
-              onChange={(date: Date) => setFromDate(date)}
+              selected={startDate}
+              onChange={(date: Date) => setStartDate(date)}
+              selectsStart
+              startDate={startDate}
+              endDate={endDate}
             />
 
             <DatePicker
               placeholderText="To .."
               className="w-full lg:w-auto"
-              selected={toDate}
-              onChange={(date: Date) => setToDate(date)}
+              selected={endDate}
+              onChange={(date: Date) => setEndDate(date)}
+              selectsEnd
+              startDate={startDate}
+              endDate={endDate}
+              minDate={startDate}
             />
           </div>
         );
