@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-key */
 
-import { useFilters, usePagination, useTable } from "react-table";
+import { useFilters, usePagination, useSortBy, useTable } from "react-table";
 import FieldFilter from "./FieldFilter";
+import {
+  HiOutlineSortDescending,
+  HiOutlineSortAscending,
+} from "react-icons/hi";
 
 interface TableProps {
-  columns: {
-    Header: string;
-    accessor: string;
-  }[];
+  columns: any[];
   data: any[];
 }
 
@@ -33,6 +34,7 @@ function Table({ columns, data }: TableProps) {
       initialState: { pageIndex: 0, pageSize: 10 }, // By Default 😅,
     },
     useFilters,
+    useSortBy,
     usePagination
   );
 
@@ -84,10 +86,21 @@ function Table({ columns, data }: TableProps) {
                         {headerGroup.headers.map((column) => (
                           <th
                             role={"columnheader"}
-                            {...column.getHeaderProps()}
-                            className="px-6 py-3 text-[10px] sm:text-xs font-bold text-left text-gray-500 "
+                            {...column.getHeaderProps(
+                              column.getSortByToggleProps()
+                            )}
+                            className="px-6 py-3 text-[10px] sm:text-xs font-bold text-gray-500 text-center"
                           >
                             {column.render("Header")}
+                            {column.isSorted && (
+                              <>
+                                {column.isSortedDesc ? (
+                                  <HiOutlineSortDescending className="inline-block text-lg ml-2" />
+                                ) : (
+                                  <HiOutlineSortAscending className="inline-block text-lg ml-2" />
+                                )}
+                              </>
+                            )}
                           </th>
                         ))}
                       </tr>
@@ -112,7 +125,7 @@ function Table({ columns, data }: TableProps) {
                             <td
                               role={"cell"}
                               {...cell.getCellProps()}
-                              className="p-4 text-xs whitespace-nowrap lowercase"
+                              className="p-4 text-xs whitespace-nowrap lowercase text-center"
                             >
                               {cell.render("Cell")}
                             </td>
@@ -140,12 +153,15 @@ function Table({ columns, data }: TableProps) {
       <div className="pagination w-full">
         {`page ${pageIndex + 1} from ${pageOptions.length}`}
         <button
-          className="bg-blue text-white text-2xl  p-4 mr-4"
+          className="bg-blue-400 text-white text-2xl  py-2 px-6 mr-2 "
           onClick={previousPage}
         >
           Prev
         </button>
-        <button className="bg-blue text-white text-2xl  p-4" onClick={nextPage}>
+        <button
+          className="bg-blue-400 text-white text-2xl  py-2 px-6"
+          onClick={nextPage}
+        >
           Next
         </button>
       </div>
