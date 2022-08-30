@@ -56,23 +56,21 @@ function EsTable({ columns, data, caption }: TableProps) {
         <Table
           variant="simple"
           {...getTableProps()}
-          bg="purple.100"
           {...(!page.length && { opacity: 0.6 })}
         >
           <Thead overflowY="auto" overflowX="hidden">
             {headerGroups.map((headerGroup) => (
               <Tr
-                bgColor={"purple.200"}
                 borderLeft={"2px solid"}
-                borderColor={"purple.900"}
+                borderColor={"grey.900"}
                 {...headerGroup.getHeaderGroupProps()}
               >
                 {headerGroup.headers.map((column) => {
                   return (
                     <Th
                       {...column.getHeaderProps()}
-                      color="purple.900"
-                      borderColor={"purple.200"}
+                      color="grey.900"
+                      borderColor={"grey.200"}
                       fontWeight="800"
                       fontSize="xs"
                       paddingY={{ base: 2, md: 6 }}
@@ -89,7 +87,7 @@ function EsTable({ columns, data, caption }: TableProps) {
                           <Box
                             width="15px"
                             marginLeft={2}
-                            color="purple.900"
+                            color="grey.900"
                             {...(!column.isSortedDesc && {
                               transform: "rotate(180deg)",
                             })}
@@ -116,11 +114,8 @@ function EsTable({ columns, data, caption }: TableProps) {
               return (
                 <Tr
                   {...row.getRowProps()}
-                  _hover={{
-                    bgColor: "purple.200",
-                  }}
                   borderLeft="2px solid"
-                  borderLeftColor="purple.900"
+                  borderLeftColor="grey.900"
                   alignItems="center"
                   {...(index % 2 === 0 && {
                     backgroundColor: "white",
@@ -154,7 +149,7 @@ function EsTable({ columns, data, caption }: TableProps) {
         {!page.length && (
           <Alert
             mt={4}
-            colorScheme="purple"
+            colorScheme="blue"
             variant="subtle"
             fontSize={{ base: "sm", md: "md" }}
           >

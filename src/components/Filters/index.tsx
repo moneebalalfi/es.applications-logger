@@ -24,19 +24,19 @@ function Filters({ fields, setFilter }: FiltersProps) {
         onClick={onToggle}
         cursor="pointer"
         w={{ base: "100%", md: "30%" }}
-        bg="purple.100"
+        bg="blue.100"
         justifyContent={"space-between"}
         alignItems={"center"}
         px={6}
         py={2}
         mb={4}
       >
-        <Heading fontSize={{ base: "md", md: "2xl" }} color="purple.700">
+        <Heading fontSize={{ base: "md", md: "2xl" }} color="blue.700">
           Filter options{" "}
         </Heading>
         <Icon
           as={isOpen ? VscFilterFilled : VscFilter}
-          color="purple.500"
+          color="blue.500"
           w={22}
           h={22}
         />

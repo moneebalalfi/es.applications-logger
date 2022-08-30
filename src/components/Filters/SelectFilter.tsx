@@ -33,9 +33,6 @@ const SelectFilter = ({
       onChange={(e) => handleChange(id, e.target.value)}
       variant="filled"
       fontSize={"sm"}
-      bg={"purple.100"}
-      _hover={{ bgColor: "purple.100" }}
-      _focus={{ bgColor: "purple.100", borderColor: "purple.700" }}
     >
       <option value="">All</option>{" "}
       {options.map((option, i) => (

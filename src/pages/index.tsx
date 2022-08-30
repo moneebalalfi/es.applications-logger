@@ -1,15 +1,12 @@
-import {
-  Box,
-  CircularProgress,
-  Container,
-  Flex,
-  Heading,
-} from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import Head from "next/head";
 import { useMemo } from "react";
 import useSWR from "swr";
+import Header from "../components/layouts/Header";
+import PageContent from "../components/layouts/PageContent";
+import Loading from "../components/Loading";
 import EsTable from "../components/Table";
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { fetcher } from "../utils";
 
 const Home = () => {
   const { data } = useSWR(
@@ -56,36 +53,21 @@ const Home = () => {
       </Head>
       <Flex
         direction={"column"}
-        bgGradient="linear(to-br, white 60%, purple.50 )"
+        bgGradient="linear(to-br, white 60%, grey.100 )"
       >
-        <Box
-          as="header"
-          paddingY={4}
-          borderBottom={"1px solid"}
-          borderBottomColor="gray.100"
-        >
-          <Container maxWidth={"container.xl"}>
-            <Heading color={"purple.700"} letterSpacing={3} fontWeight={"800"}>
-              ES-App Logger
-            </Heading>
-          </Container>
-        </Box>
+        <Header />
 
-        <Flex alignItems={"center"} flexDir={"column"} p={{ base: 4, md: 8 }}>
-          <Container maxWidth={"container.xl"}>
-            {!data ? (
-              <Flex h="80vh" alignItems={"center"} justifyContent="center">
-                <CircularProgress isIndeterminate color="purple.300" />
-              </Flex>
-            ) : (
-              <EsTable
-                columns={columns}
-                data={data.result.auditLog}
-                caption="ES-Application logger table"
-              />
-            )}
-          </Container>
-        </Flex>
+        <PageContent>
+          {!data ? (
+            <Loading />
+          ) : (
+            <EsTable
+              columns={columns}
+              data={data.result.auditLog}
+              caption="ES-Application logger table"
+            />
+          )}
+        </PageContent>
       </Flex>
     </>
   );
