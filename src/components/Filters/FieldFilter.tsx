@@ -66,9 +66,12 @@ function FieldFilter({
       default:
         return (
           <Input
+            _hover={{ bgColor: "purple.100" }}
+            _focus={{ bgColor: "purple.100", borderColor: "purple.700" }}
             variant="filled"
             fontSize={"sm"}
             bg={"purple.100"}
+            color="purple.700"
             placeholder={placeholder}
             onChange={(e) => handleChange(id, e.target.value)}
           />
