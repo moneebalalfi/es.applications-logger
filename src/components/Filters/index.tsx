@@ -24,7 +24,7 @@ function Filters({ fields, setFilter }: FiltersProps) {
         onClick={onToggle}
         cursor="pointer"
         w={{ base: "100%", md: "30%" }}
-        bg="blue.100"
+        bg="gray.100"
         justifyContent={"space-between"}
         alignItems={"center"}
         px={6}

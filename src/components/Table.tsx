@@ -16,8 +16,8 @@ import {
 } from "@chakra-ui/react";
 import { IoArrowUpOutline } from "react-icons/io5";
 import { useFilters, usePagination, useSortBy, useTable } from "react-table";
-
 import Filters from "./Filters";
+import Pagination from "./Pagination";
 
 interface TableProps {
   columns: any;
@@ -34,6 +34,14 @@ function EsTable({ columns, data, caption }: TableProps) {
     prepareRow,
     columns: fields,
     setFilter,
+    canNextPage,
+    canPreviousPage,
+    nextPage,
+    previousPage,
+    pageOptions: { length },
+    gotoPage,
+    pageCount,
+    state: { pageIndex },
   } = useTable(
     {
       columns,
@@ -62,15 +70,15 @@ function EsTable({ columns, data, caption }: TableProps) {
             {headerGroups.map((headerGroup) => (
               <Tr
                 borderLeft={"2px solid"}
-                borderColor={"grey.900"}
+                borderColor={"gray.900"}
                 {...headerGroup.getHeaderGroupProps()}
               >
                 {headerGroup.headers.map((column) => {
                   return (
                     <Th
                       {...column.getHeaderProps()}
-                      color="grey.900"
-                      borderColor={"grey.200"}
+                      color="gray.900"
+                      borderColor={"gray.200"}
                       fontWeight="800"
                       fontSize="xs"
                       paddingY={{ base: 2, md: 6 }}
@@ -87,7 +95,7 @@ function EsTable({ columns, data, caption }: TableProps) {
                           <Box
                             width="15px"
                             marginLeft={2}
-                            color="grey.900"
+                            color="gray.900"
                             {...(!column.isSortedDesc && {
                               transform: "rotate(180deg)",
                             })}
@@ -115,7 +123,7 @@ function EsTable({ columns, data, caption }: TableProps) {
                 <Tr
                   {...row.getRowProps()}
                   borderLeft="2px solid"
-                  borderLeftColor="grey.900"
+                  borderLeftColor="gray.900"
                   alignItems="center"
                   {...(index % 2 === 0 && {
                     backgroundColor: "white",
@@ -127,7 +135,7 @@ function EsTable({ columns, data, caption }: TableProps) {
                         {...cell.getCellProps()}
                         border={"none"}
                         p={{ base: 1, md: 4 }}
-                        {...(!cell.value && { color: "gray.500" })}
+                        {...(!cell.value && { color: "gray.300" })}
                         textTransform="lowercase"
                       >
                         {cell.value ? cell.render("Cell") : "--/--"}
@@ -161,60 +169,18 @@ function EsTable({ columns, data, caption }: TableProps) {
           </Alert>
         )}
       </Box>
+      <Pagination
+        gotoPage={gotoPage}
+        previousPage={previousPage}
+        nextPage={nextPage}
+        canNextPage={canNextPage}
+        canPreviousPage={canPreviousPage}
+        pageIndex={pageIndex}
+        pageCount={pageCount}
+        pageLength={length}
+      />
     </>
   );
 }
 
 export default EsTable;
-
-{
-  /* <Box>
-{`page ${pageIndex + 1} from ${pageOptions.length}`}
-<button
-  className="bg-blue-400 text-white text-2xl  py-2 px-6 mr-2 "
-  onClick={previousPage}
->
-  Prev
-</button>
-<button
-  className="bg-blue-400 text-white text-2xl  py-2 px-6"
-  onClick={nextPage}
->
-  Next
-</button>
-</Box> */
-}
-
-{
-  /* <Flex>
-<FieldFilter
-  title="Application ID"
-  placeholder="e.g 3757..."
-  id="applicationId"
-  handleChange={setFilter}
-/>
-
-<FieldFilter
-  title="Application type"
-  id="applicationType"
-  filterType="SELECT"
-  preFilteredRows={fields[1].preFilteredRows}
-  handleChange={setFilter}
-/>
-
-<FieldFilter
-  title="Action type"
-  id="actionType"
-  filterType="SELECT"
-  preFilteredRows={fields[3].preFilteredRows}
-  handleChange={setFilter}
-/>
-
-<FieldFilter
-  title="Date"
-  id="creationTimestamp"
-  filterType="DATE"
-  handleChange={setFilter}
-/>
-</Flex> */
-}
