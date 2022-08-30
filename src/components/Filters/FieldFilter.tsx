@@ -44,7 +44,6 @@ function FieldFilter({
           <Flex>
             <DatePicker
               placeholderText="From .."
-              className="mb-2 lg:mb-0 lg:mr-2 w-full lg:w-auto"
               selected={startDate}
               onChange={(date: Date) => setStartDate(date)}
               selectsStart
@@ -54,7 +53,6 @@ function FieldFilter({
 
             <DatePicker
               placeholderText="To .."
-              className="w-full lg:w-auto"
               selected={endDate}
               onChange={(date: Date) => setEndDate(date)}
               selectsEnd
