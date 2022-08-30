@@ -1,5 +1,5 @@
 import { RangeDatepicker } from "chakra-dayzed-datepicker";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Row } from "react-table";
 
 interface DateRangeFilterProps {
