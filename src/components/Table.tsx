@@ -27,13 +27,13 @@ interface TableProps {
 
 function EsTable({ columns, data, caption }: TableProps) {
   const {
+    setAllFilters,
     getTableProps,
     getTableBodyProps,
     headerGroups,
     page,
     prepareRow,
     columns: fields,
-    setFilter,
     canNextPage,
     canPreviousPage,
     nextPage,
@@ -41,6 +41,7 @@ function EsTable({ columns, data, caption }: TableProps) {
     pageOptions: { length },
     gotoPage,
     pageCount,
+
     state: { pageIndex },
   } = useTable(
     {
@@ -54,10 +55,12 @@ function EsTable({ columns, data, caption }: TableProps) {
     usePagination
   );
 
+  console.log("📢 [Table.tsx:60]", fields);
+
   return (
     <>
       {/* Filter Inputs */}
-      <Filters fields={fields} setFilter={setFilter} />
+      <Filters fields={fields} resetFilters={setAllFilters} />
 
       {/* The Actual table */}
       <Box overflowX="scroll">

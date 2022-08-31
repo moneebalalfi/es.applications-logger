@@ -1,5 +1,4 @@
-import { FormControl, FormLabel, Input, useToast } from "@chakra-ui/react";
-import { ChangeEvent, useState } from "react";
+import { FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { Row } from "react-table";
 import DateRangeFilter from "./DateRangeFilter";
 import SelectFilter from "./SelectFilter";
@@ -10,7 +9,8 @@ interface FieldFilterProps {
   id: string;
   filterType?: "DEFAULT" | "SELECT" | "DATE";
   preFilteredRows?: Row<Object>[]; // Required If filterType === "SELECT"
-  handleChange: (columnId: string, updater: any) => void;
+  handleChange: (updater: any) => void;
+  filterValue: any;
 }
 
 function FieldFilter({
@@ -20,33 +20,15 @@ function FieldFilter({
   filterType = "DEFAULT",
   preFilteredRows,
   handleChange,
+  filterValue,
 }: FieldFilterProps) {
   function FilterInput() {
-    const toast = useToast();
-    const [value, setValue] = useState<any>();
-
-    const handleDefaultFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
-      if (/[0-9]/.test(e.target.value)) {
-        setValue(e.target.value);
-        handleChange(id, value);
-      } else {
-        toast({
-          position: "bottom",
-          title: "Application ID",
-          description: "Only numbers allowed",
-          status: "warning",
-          duration: 1000,
-          isClosable: true,
-        });
-        return;
-      }
-    };
-
     switch (filterType) {
       case "SELECT": {
         if (preFilteredRows) {
           return (
             <SelectFilter
+              filterValue={filterValue}
               id={id}
               preFilteredRows={preFilteredRows}
               handleChange={handleChange}
@@ -72,7 +54,8 @@ function FieldFilter({
             variant="filled"
             fontSize={"sm"}
             placeholder={placeholder}
-            onChange={(e) => handleDefaultFilterChange(e)}
+            value={filterValue || ""}
+            onChange={(e) => handleChange(e.target.value)}
           />
         );
     }

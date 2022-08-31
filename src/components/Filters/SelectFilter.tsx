@@ -5,13 +5,15 @@ import { Row } from "react-table";
 interface SelectFilterProps {
   id: string;
   preFilteredRows: Row<Object>[];
-  handleChange: (columnId: string, updater: any) => void;
+  handleChange: (updater: any) => void;
+  filterValue: any;
 }
 
 const SelectFilter = ({
   id,
   preFilteredRows,
   handleChange,
+  filterValue,
 }: SelectFilterProps) => {
   const options = useMemo(() => {
     const options: Record<string, any> = new Set(); // Set() ? Because I want Unique Values ⭐️
@@ -30,7 +32,8 @@ const SelectFilter = ({
 
   return (
     <Select
-      onChange={(e) => handleChange(id, e.target.value)}
+      onChange={(e) => handleChange(e.target.value)}
+      value={filterValue || "All"}
       variant="filled"
       fontSize={"sm"}
     >
